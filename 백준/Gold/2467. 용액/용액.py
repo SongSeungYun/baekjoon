@@ -2,21 +2,15 @@ import sys
 n=int(input())
 li=list(map(int,sys.stdin.readline().split(" ")))
 a,b=10**9,10**9
-for i in range(n-1):
-    target=-li[i]
-    l=i+1
-    r=n-1
-    while l<=r:
-        mid=(l+r)//2
-        if target==li[mid]:
-            a,b=li[i],-li[i]
+l,r=0,n-1
+
+while l<r:
+    if abs(li[l]+li[r])<abs(a+b):
+        a,b=li[l],li[r]
+        if a+b==0:
             break
-        elif target<li[mid]:
-            r=mid-1
-        else:
-            l=mid+1
-    if i<l<n and abs(li[i]+li[l])<abs(a+b):
-        a,b=li[i],li[l]
-    if i<r<n and abs(li[i]+li[r])<abs(a+b):
-        a,b=li[i],li[r]
+    if li[l]+li[r]<0:
+        l+=1
+    elif li[l]+li[r]>0:
+        r-=1
 print(a,b)
