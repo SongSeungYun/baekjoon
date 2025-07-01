@@ -15,12 +15,10 @@ def dfs(index,cnt):
     if cnt==k-5:
         readcnt=0
         for word in words:
-            if_can_read=True
             for alpha in word:
                 if not d[ord(alpha)-97]:
-                    if_can_read=False
                     break
-            if if_can_read:
+            else:
                 readcnt+=1
         answer=max(answer,readcnt)
         return
